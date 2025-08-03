@@ -153,7 +153,7 @@ body.show-secret-bg::before {
 }
 
 .strands-cell.selected {
-    background-color: #da81ad !important;
+    background-color: #ff8fc7 !important;
     color: white;
     transform: scale(1.05);
 }
