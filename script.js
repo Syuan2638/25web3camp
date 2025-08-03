@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 animalPuzzlePage.classList.add('hidden');
                 letterPage.classList.remove('hidden');
                 body.classList.add('show-animals-bg');
-                setTimeout(() => { continueToGameButton.classList.remove('hidden'); }, 10000);
-                
+                continueToGameButton.classList.remove('hidden');
+
                 animalInput.disabled = false;
                 animalInput.value = '';
             }, 500);
