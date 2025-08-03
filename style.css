@@ -90,6 +90,7 @@ body.show-secret-bg::before {
 
 .strands-instructions {
     margin: 0 0 15px 0;
+    margin-bottom: 0.25em; /* 調整這個值，直到你滿意為止 */
     color: #5c4336;
     text-align: center;
 }
