@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一個永恆的難題</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 第一頁：信封 -->
+<div id="envelope-page" class="page">
+    <img id="envelope-image" src="images/letter.png" alt="一封信">
+</div>
+
+<!-- 第二頁：連線遊戲 -->
+<div id="strands-page" class="page hidden">
+    <div class="strands-container">
+        <h1>連線遊戲</h1>
+        <p class="strands-instructions">請按順序點擊相鄰的空格，找出隱藏的單字路徑。</p>
+        
+        <h2 class="strands-theme">主題：數位世界</h2>
+
+        <div id="strands-words-to-find" class="strands-words-to-find">
+            <!-- JS 會動態生成待找的詞 -->
+        </div>
+        <div id="strands-board" class="strands-board">
+            <!-- JS 會動態生成字母網格 -->
+        </div>
+        <div class="strands-actions">
+            <!-- 獲勝後會自動跳轉，不再需要按鈕 -->
+        </div>
+    </div>
+</div>
+
+<!-- 動物謎題頁面 -->
+<div id="animal-puzzle-page" class="page hidden">
+    <div class="puzzle-container">
+        <h2>請找出我最喜歡的動物吧！</h2>
+        <input type="text" id="animal-input" placeholder="輸入答案...">
+    </div>
+</div>
+
+
+<!-- 第三頁：信紙 -->
+<div id="letter-page" class="page hidden">
+    <div class="letter-content-wrapper">
+        <div class="poem-text">
+            <p>承諾是座堅固的堡壘，無法被竄改的代碼，<br>許下了那永恆的誓言，能抵禦駭客的謊言。</p>
+            <p>激情是道飛馳的閃電，一瞬處理萬次心跳，<br>讓整個世界為之燃燒，那炙熱不滅的烈焰。</p>
+            <p>親密是片平等的星空，萬千節點同步共鳴，<br>宇宙只剩彼此的感知，以及最真實的呼吸。</p>
+            <p>可堡壘使閃電成燭光，烈焰讓星空變孤單，<br>而平等的每一顆星星，都無法守護那城牆。</p>
+            <p>這便是那道無解習題，橫亙在冰冷的代碼，<br>與那熾熱的心跳之間，這是個永恆的難題。</p>
+        </div>
+        <button id="continue-to-game-button" class="hidden">繼續</button>
+    </div>
+</div>
+
+<!-- 第四頁：踩地雷遊戲容器 -->
+<div id="game-container" class="page hidden">
+    <div id="final-puzzle" class="hidden">
+        <span>那你知道魔法是什麼了嗎？</span>
+        <input type="text" id="magic-input" placeholder="輸入答案...">
+    </div>
+    
+    <div id="game-rules">
+        <h3>遊戲規則</h3>
+        <ul>
+            <li><span>目標：</span>找出所有 26 個隱藏的愛心 ❤️，不要引爆它們！</li>
+            <li><span>操作：</span>點擊任一格子，會彈出工具選單。</li>
+            <li><span>挖掘：</span>使用「鏟子」挖掘格子。若挖到愛心，將會受到一次警告。累計三次警告，遊戲將暫停。</li>
+            <li><span>標記：</span>使用「旗幟」標記你認為是愛心的位置。你總共有 26 面旗幟。</li>
+            <li><span>線索：</span>格子中出現的圖示，是它周圍九宮格內隱藏愛心數量的提示。</li>
+            <li><span>獲勝：</span>成功標記出所有 26 個愛心，或挖掘出所有安全的格子，即可獲勝。</li>
+        </ul>
+    </div>
+
+    <div class="status">
+        <button id="back-to-letter-button" title="返回上一頁">返回</button>
+        <span>剩餘地雷: <span id="mines-count">0</span></span>
+        <button id="reset-button">重新開始</button>
+    </div>
+
+    <div id="game-board" class="game-board"></div>
+    
+    <div class="penalty-box">
+        <button id="show-quiz-button" class="hidden">點我看提示</button>
+        <div  id="hint-container" class="hidden">
+            <div id="hint-line-1" class="hint-line hidden">
+                <span>提示：</span>
+                <img src="images/bitcoin.png" alt="比特幣">
+                <span class="arrow">→</span>
+                <img src="images/ethereum.png" alt="以太幣">
+                <span class="arrow">→</span>
+                <img src="images/polkadot.png" alt="波卡">
+            </div>
+            <div id="hint-line-2" class="hint-line hidden">
+                <span class="math-symbol">∵</span>
+                <img src="images/bitcoin.png" alt="比特幣">
+                <span class="math-symbol">= ○</span>
+                <span class="math-symbol separator">∴</span>
+                <img src="images/Litecoin.png" alt="萊特幣">
+                <span class="math-symbol">= □</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第五頁：問答頁面 -->
+<div id="quiz-page" class="page hidden">
+    <div class="quiz-container">
+        <!-- 問題將由 JavaScript 動態生成於此 -->
+    </div>
+    <button id="submit-quiz-button">送出答案</button>
+</div>
+
+<!-- 第六頁：結局頁面 -->
+<div id="ending-page" class="page hidden">
+    <div class="ending-wrapper">
+        <img src="images/note.png" alt="筆記" id="ending-note-image">
+        <p class="ending-text">fSE8CE9RT7ST1RIdANaGLcES3CYdTA7LE</p>
+    </div>
+
+    <!-- ▼▼▼ 新增的區塊 ▼▼▼ -->
+    <div class="key-input-container">
+        <label for="final-key-input">請輸入金鑰：</label>
+        <input type="text" id="final-key-input" name="final-key-input" placeholder="在這裡輸入...">
+    </div>
+    <!-- ▲▲▲ 新增結束 ▲▲▲ -->
+</div>
+
+<!-- 工具彈出選單 -->
+<div id="tool-popup" class="hidden">
+    <img id="tool-shovel" src="images/shovel.png" alt="挖掘" title="挖掘">
+    <img id="tool-flag" src="images/flag.png" alt="插旗" title="插旗">
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

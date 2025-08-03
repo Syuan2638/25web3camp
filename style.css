@@ -1,0 +1,417 @@
+/* --- 全局與開場頁面樣式 --- */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    font-family: 'Segoe UI', 'Microsoft JhengHei', 'Noto Serif TC', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    background-color: #f0e8e0;
+    position: relative;
+    z-index: 0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/animals.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+body.show-animals-bg::before {
+    opacity: 0.25;
+}
+
+body.show-secret-bg::before {
+    background-image: url('images/secret.png');
+    opacity: 0.7; 
+}
+
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hidden { display: none !important; }
+
+#envelope-page img {
+    max-width: 600px;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 6px 15px rgba(0,0,0,0.35));
+}
+#envelope-page img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+}
+
+
+/* --- 連線遊戲 (Strands) 樣式 --- */
+#strands-page {
+    justify-content: flex-start;
+    padding-top: 5vh;
+}
+
+.strands-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff5ee;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #ffdde1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.strands-container h1 {
+    font-size: 2.2rem;
+    color: #c71585;
+    margin: 0 0 5px 0;
+}
+
+.strands-instructions {
+    margin: 0 0 15px 0;
+    color: #5c4336;
+    text-align: center;
+}
+
+.strands-theme {
+    margin: 0;
+    color: #c71585;
+    font-weight: bold;
+}
+
+.strands-words-to-find {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.strands-word-display {
+    padding: 5px 15px;
+    border: 1px solid #ffdde1;
+    border-radius: 20px;
+    background-color: #fdf5e6;
+    color: #a9a9a9;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.strands-word-display.found {
+    background-color: #FFB6C1;
+    color: white;
+    border-color: #FFB6C1;
+    font-weight: bold;
+    text-decoration: line-through;
+}
+
+.strands-board {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(7, 50px);
+    gap: 5px;
+    user-select: none;
+}
+
+.strands-cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fdced6;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #5c4336;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+}
+
+.strands-cell.selected {
+    background-color: #da81ad !important;
+    color: white;
+    transform: scale(1.05);
+}
+
+.strands-cell.found-theme {
+    background-color: #fc8899;
+    animation: found-pop 0.5s ease;
+}
+
+.strands-cell.found-spangram {
+    background-color: #DB7093;
+    color: white;
+    animation: found-pop 0.5s ease;
+}
+
+@keyframes found-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.strands-actions {
+    margin-top: 10px;
+    min-height: 40px; 
+    display: flex;
+    gap: 20px;
+}
+
+/* --- 動物謎題頁面樣式 --- */
+#animal-puzzle-page .puzzle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(255, 248, 245, 0.9);
+    padding: 40px 50px;
+    border-radius: 15px;
+    border: 2px solid #ffdde1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    animation: fadeIn 1s ease;
+}
+#animal-puzzle-page h2 {
+    font-size: 1.8rem;
+    color: #c71585;
+    font-weight: bold;
+    margin: 0;
+}
+#animal-puzzle-page input {
+    padding: 10px 15px;
+    border: 2px solid #FFB6C1;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    width: 250px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+#animal-puzzle-page input:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 8px #FF69B4;
+}
+
+
+/* --- 信紙頁面 --- */
+#letter-page {
+    background-image: url('images/paper.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 600px;
+    height: 800px;
+    cursor: default;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 120px;
+    position: relative;
+    box-sizing: border-box;
+}
+.letter-content-wrapper { display: flex; align-items: flex-end; justify-content: center; width: 90%; gap: 20px; }
+.poem-text { width: 70%; color: #3a2d21; font-size: 16px; line-height: 2.2; text-align: center; }
+.poem-text p { margin-bottom: 0; }
+#continue-to-game-button {
+    position: absolute; bottom: 50px; right: 60px;
+    background-color: #6d4c41; color: #f0e8e0; border: none; border-radius: 20px;
+    padding: 10px 25px; font-size: 16px; cursor: pointer;
+    transition: background-color 0.3s ease; animation: fadeInButton 1s ease;
+}
+#continue-to-game-button:hover { background-color: #4e342e; }
+
+/* --- 踩地雷遊戲 --- */
+#final-puzzle { display: flex; flex-direction: row; align-items: center; gap: 15px; margin-bottom: 25px; animation: fadeIn 1s ease; }
+#final-puzzle span { font-size: 1.3rem; color: #c71585; font-weight: bold; }
+#magic-input { padding: 8px 12px; border: 2px solid #FFB6C1; border-radius: 8px; font-size: 1.1rem; width: 220px; transition: all 0.3s ease; }
+#magic-input:focus { outline: none; border-color: #FF69B4; box-shadow: 0 0 8px #FF69B4; }
+#magic-input:disabled { background-color: #e9e9e9; cursor: not-allowed; }
+
+#game-rules { background-color: #fff5ee; border: 2px solid #ffdde1; border-radius: 12px; padding: 25px 40px; width: 770px; box-sizing: border-box; margin-bottom: 20px; text-align: left; }
+#game-rules h3 { margin-top: 0; margin-bottom: 15px; color: #c71585; text-align: center; font-weight: bold; }
+#game-rules ul { list-style-type: none; padding: 0; margin: 0; }
+#game-rules li { margin-bottom: 10px; line-height: 1.6; color: #5c4336; font-size: 16px; }
+#game-rules li:last-child { margin-bottom: 0; }
+#game-rules li span { font-weight: bold; color: #a3116b; margin-right: 5px; }
+
+.status { display: flex; justify-content: space-between; align-items: center; width: 770px; margin-bottom: 20px; font-size: 1.4em; }
+
+#reset-button, #back-to-letter-button {
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    -webkit-font-smoothing: antialiased;
+}
+#reset-button:hover, #back-to-letter-button:hover {
+    background-color: #FF1493;
+    transform: translateY(-2px);
+}
+
+.game-board { display: grid; padding: 5px; background-color: #FFB6C1; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); gap: 6px; transition: opacity 0.3s ease; }
+.game-board.locked { opacity: 0.6; pointer-events: none; }
+.cell { width: 45px; height: 45px; background-color: #FFC0CB; border: none;  border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 27px; font-weight: bold; cursor: pointer; user-select: none; transition: all 0.25s ease; position: relative; }
+.cell:not(.revealed):hover { transform: scale(1.1); background-color: #FFDDE1; }
+.cell.revealed { background-color: #FFF5EE; cursor: default; transform: scale(0.95); box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); }
+.cell[data-mines="6"] { color: #40E0D0; }
+.cell[data-mines="7"] { color: #4682B4; }
+.cell[data-mines="8"] { color: #363636; }
+.cell.mine { background-color: #FFB6C1; }
+
+.crypto-icon, .flag-icon { width: 32px; height: 32px; object-fit: contain; }
+.heart-icon { width: 40px; height: 40px; animation: fadeIn 0.5s; object-fit: contain; }
+
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeInButton { from { opacity: 0; } to { opacity: 1; } }
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+.explosion-shake { animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both; }
+
+.penalty-box {
+    margin-top: 20px;
+    height: 60px; 
+    display: flex;
+    align-items: center;
+    width: 770px;
+    justify-content: space-between; 
+    position: relative; 
+}
+#show-quiz-button { 
+    background-color: #c71585; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 1.1rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+#show-quiz-button:hover { background-color: #a3116b; }
+#hint-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+#hint-line-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex !important; 
+}
+
+.hint-line { display: flex; align-items: center; gap: 10px; }
+.hint-line span:first-child { font-size: 1.1rem; font-weight: bold; }
+#hint-container img { height: 28px; }
+#hint-container .arrow { font-size: 20px; color: #333; }
+#hint-container .math-symbol { font-size: 22px; font-weight: bold; color: #555; }
+#hint-container .separator { margin: 0 10px; }
+.hint-step-active { box-shadow: 0 0 10px 4px #FFD700; border-radius: 8px; z-index: 10; }
+#tool-popup { position: absolute; background-color: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; border-radius: 12px; padding: 8px; display: flex; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 100; backdrop-filter: blur(4px); }
+#tool-popup img { width: 48px; height: 48px; cursor: pointer; transition: transform 0.2s ease; }
+#tool-popup img:hover { transform: scale(1.15); }
+
+/* --- 問答頁面樣式 --- */
+#quiz-page { position: relative; width: 100%; height: 100vh; }
+.quiz-container { display: flex; justify-content: space-around; align-items: flex-start; width: 90%; max-width: 1200px; gap: 20px; }
+.quiz-question { background-color: #fff5ee; border: 2px solid #ffdde1; border-radius: 12px; padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.quiz-question p { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #5c4336; }
+.quiz-options { list-style-type: none; padding: 0; margin-bottom: 20px; }
+.quiz-options li { margin-bottom: 12px; }
+.quiz-options label { margin-left: 8px; font-size: 1rem; cursor: pointer; display: inline-block; vertical-align: middle; }
+.quiz-options input[type="radio"] { transform: scale(1.2); margin-right: 5px; cursor: pointer; vertical-align: middle; }
+#submit-quiz-button { position: absolute; bottom: 40px; right: 40px; background-color: #FF69B4; color: white; border: none; border-radius: 20px; padding: 12px 30px; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease; }
+#submit-quiz-button:hover { background-color: #FF1493; }
+
+/* --- 結局頁面樣式 --- */
+.ending-wrapper {
+    position: relative; 
+    width: 90%; 
+    max-width: 800px; 
+    animation: fadeIn 1.5s ease;
+}
+
+#ending-note-image {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+}
+
+.ending-text {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%; 
+    margin: 0;
+    font-size: 1.875rem; 
+    font-weight: bold;
+    color: #3a2d21; 
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); 
+    text-align: center;
+    word-break: break-all;
+}
+
+/* ▼▼▼ 新增的樣式 ▼▼▼ */
+.key-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* 文字和輸入框的間距 */
+    margin-top: 30px; /* 與上方圖片的距離，防止重疊 */
+    animation: fadeIn 1.5s ease; /* 讓它跟著圖片一起淡入 */
+}
+
+.key-input-container label {
+    font-size: 1.3rem;
+    color: #c71585;
+    font-weight: bold;
+}
+
+#final-key-input {
+    padding: 8px 12px;
+    border: 2px solid #FFB6C1;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    width: 300px; /* 可根據喜好調整寬度 */
+    transition: all 0.3s ease;
+}
+
+#final-key-input:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 8px #FF69B4;
+}
+/* ▲▲▲ 新增結束 ▲▲▲ */
