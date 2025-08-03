@@ -398,9 +398,21 @@ body.show-secret-bg::before {
 .quiz-question { background-color: #fff5ee; border: 2px solid #ffdde1; border-radius: 12px; padding: 20px; flex: 1; display: flex; flex-direction: column; }
 .quiz-question p { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #5c4336; }
 .quiz-options { list-style-type: none; padding: 0; margin-bottom: 20px; }
-.quiz-options li { margin-bottom: 12px; }
-.quiz-options label { margin-left: 8px; font-size: 1rem; cursor: pointer; display: inline-block; vertical-align: middle; }
-.quiz-options input[type="radio"] { transform: scale(1.2); margin-right: 5px; cursor: pointer; vertical-align: middle; }
+.quiz-options li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.quiz-option-wrapper {
+    border: 2px solid #FFB6C1;
+    border-radius: 8px;
+    padding: 5px;
+    display: inline-block; /* 確保方格只包住選項 */
+}
+
+.quiz-options input[type="radio"] {
+    margin-right: 5px;
+}
 #submit-quiz-button { position: absolute; bottom: 40px; right: 40px; background-color: #FF69B4; color: white; border: none; border-radius: 20px; padding: 12px 30px; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease; }
 #submit-quiz-button:hover { background-color: #FF1493; }
 
