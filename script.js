@@ -631,24 +631,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
             q.options.forEach((opt, optIndex) => {
                 const listItem = document.createElement('li');
+                listItem.classList.add('quiz-option-item'); // Add class to list item
+
                 const radioInput = document.createElement('input');
                 radioInput.type = 'radio';
                 radioInput.name = `quiz-question-${index}`;
                 radioInput.id = `q${index}-opt${optIndex}`;
                 radioInput.value = optIndex; // 使用選項的索引作為其值
+                radioInput.classList.add('quiz-option-radio'); // Add class to radio input
 
                 const label = document.createElement('label');
                 label.htmlFor = radioInput.id;
-                label.textContent = opt; // 顯示已去除 A/B/C/D 的選項文字
+                label.textContent = opt;
+                label.classList.add('quiz-option-label'); // Add class to label
 
-                // ▼▼▼ 修改的區塊 ▼▼▼
-                const optionWrapper = document.createElement('div');
-                optionWrapper.classList.add('quiz-option-wrapper');
-                optionWrapper.appendChild(radioInput);
-                optionWrapper.appendChild(label);
-                listItem.appendChild(optionWrapper);
-                // ▲▲▲ 修改結束 ▲▲▲
-
+                listItem.appendChild(radioInput);
+                listItem.appendChild(label);
                 optionsList.appendChild(listItem);
             });
 

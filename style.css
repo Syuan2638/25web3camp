@@ -397,22 +397,47 @@ body.show-secret-bg::before {
 .quiz-container { display: flex; justify-content: space-around; align-items: flex-start; width: 90%; max-width: 1200px; gap: 20px; }
 .quiz-question { background-color: #fff5ee; border: 2px solid #ffdde1; border-radius: 12px; padding: 20px; flex: 1; display: flex; flex-direction: column; }
 .quiz-question p { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #5c4336; }
-.quiz-options { list-style-type: none; padding: 0; margin-bottom: 20px; }
-.quiz-options li {
+.quiz-options {
     list-style: none;
-    margin-bottom: 10px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* 修改為垂直排列 */
+    gap: 10px;
 }
 
-.quiz-option-wrapper {
+.quiz-option-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid #FFB6C1;
     border-radius: 8px;
-    padding: 5px;
-    display: inline-block; /* 確保方格只包住選項 */
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.quiz-options input[type="radio"] {
-    margin-right: 5px;
+.quiz-option-item:hover {
+    background-color: #ffe4e1; /* 滑鼠懸停時的顏色 */
 }
+
+.quiz-option-item input[type="radio"] {
+    display: none; /* 隱藏 radio input */
+}
+
+.quiz-option-item label {
+    margin: 0;
+    cursor: pointer;
+    text-align: left; /* 添加文字左對齊 */
+    display: block; /* 讓 label 佔滿整個格子 */
+}
+
+.quiz-option-item input[type="radio"]:checked + label {
+    background-color: #FFB6C1; /* 選中時的顏色 */
+    color: white;
+}
+
 #submit-quiz-button { position: absolute; bottom: 40px; right: 40px; background-color: #FF69B4; color: white; border: none; border-radius: 20px; padding: 12px 30px; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease; }
 #submit-quiz-button:hover { background-color: #FF1493; }
 
