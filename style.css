@@ -208,7 +208,7 @@ body.show-secret-bg::before {
 }
 
 .strands-cell.found-theme {
-    background-color: #fc8899;
+    background-color: #ffb2be;
     animation: found-pop 0.5s ease;
 }
 
